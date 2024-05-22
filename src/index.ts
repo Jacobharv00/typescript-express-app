@@ -3,17 +3,16 @@ import bodyParser from "body-parser";
 import cookieSession from "cookie-session";
 
 import './controllers/LoginControllers'
-import {router as controllerRouter} from './controllers/decorators/controller'
+import './controllers/RootController'
 
-import {router} from "./routes/loginRoutes";
+import {AppRouter} from "./AppRouter";
 
 const app = express()
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(cookieSession({keys: ['asdfjkl']}))
-app.use(router)
-app.use(controllerRouter)
+app.use(AppRouter.getInstance())
 
 app.listen(3000, () => {
-    console.log('** Listening on port 3000 **')
+  console.log('** Listening on port 3000 **')
 })
